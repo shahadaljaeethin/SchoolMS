@@ -23,8 +23,9 @@ public class AddressService {
         Teacher teacher = teacherRepository.findTeacherById(dto.getTeacherId());
         if(teacher==null) throw new ApiException("teacher not found");
 
-        Address address = new Address(dto.getTeacherId(), dto.getArea(), dto.getStreet(), dto.getBuildingNumber(), teacher);
+        Address address = new Address(null, dto.getArea(), dto.getStreet(), dto.getBuildingNumber(), teacher);
         addressRepository.save(address);
+
     }
 
     public void updateAddress(AddressDTOin dto){
