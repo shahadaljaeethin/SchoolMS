@@ -45,4 +45,9 @@ public ResponseEntity<?> assignTtoC(@PathVariable Integer teachId, @PathVariable
     return ResponseEntity.status(200).body(new ApiResponse("assign done"));
 }
 
+@GetMapping("/course students/{id}")
+public ResponseEntity<?> getAllStudent(@PathVariable Integer id){
+    return ResponseEntity.status(200).body( courseService.getStudentsByCourse(id));
+}
+
 }

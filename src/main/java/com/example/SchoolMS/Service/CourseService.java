@@ -3,6 +3,7 @@ package com.example.SchoolMS.Service;
 import com.example.SchoolMS.Api.ApiException;
 import com.example.SchoolMS.DTO.TeacherDTO;
 import com.example.SchoolMS.Model.Course;
+import com.example.SchoolMS.Model.Student;
 import com.example.SchoolMS.Model.Teacher;
 import com.example.SchoolMS.Repository.CourseRepository;
 import com.example.SchoolMS.Repository.TeacherRepository;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -56,6 +58,12 @@ private final TeacherRepository teacherRepository;
 
         course.setTeacher(teacher);
         courseRepository.save(course);
+    }
+
+    public Set<Student> getStudentsByCourse(Integer id){
+        Course course = courseRepository.findCourseById(id);
+        if(course==null) throw new ApiException("course not found");
+        return course.getStudents();
     }
 
 }
